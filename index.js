@@ -14,6 +14,10 @@ app.use(cors({
   allowedHeaders: 'Content-Type, Authorization'
 }));
 
+app.use(express.json({
+  extended: true
+}));
+
 router(app);
 
 app.listen(PORT, (err) => {
