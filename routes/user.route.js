@@ -4,6 +4,7 @@
 
 const express = require('express');
 const db = require('../database');
+const { v4: uuidv4 } = require('uuid');
 const Users = db.users;
 const usersRouter = express.Router();
 
@@ -21,8 +22,9 @@ usersRouter.get('/', async (req, res) => {
 // POST запрос на добавление нового пользователя
 usersRouter.post('/new', async (req, res) => {
   try {
-    const {name, secondName } = req.body;
+    const { name, secondName } = req.body;
     const newUser = await Users.create({
+      id: uuidv4(),
       name,
       secondname: secondName
     });
